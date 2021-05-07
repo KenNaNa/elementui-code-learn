@@ -39,10 +39,10 @@ watch: {
 
 ```js
     computed: {
-      minDisabled() {
+      minDisabled() { // 小于最小禁止
         return this._decrease(this.value, this.step) < this.min;
       },
-      maxDisabled() {
+      maxDisabled() { // 大于最大禁止
         return this._increase(this.value, this.step) > this.max;
       },
       numPrecision() {
@@ -57,7 +57,7 @@ watch: {
           return Math.max(getPrecision(value), stepPrecision);
         }
       },
-      controlsAtRight() {
+      controlsAtRight() { // 控制
         return this.controls && this.controlsPosition === 'right';
       },
       _elFormItemSize() {
