@@ -24,3 +24,18 @@ size: {
   }
 },
 ```
+
+shape 属性验证三种状态
+
+- circle
+- square
+
+```js
+shape: {
+  type: String,
+  default: 'circle',
+  validator(val) {
+    return ['circle', 'square'].includes(val);
+  }
+},
+```
