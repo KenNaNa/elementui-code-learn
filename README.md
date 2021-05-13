@@ -46,4 +46,10 @@ mounted () {
 },
 ```
 
+- 在 router-view 加上 key
+
+```html
+<router-view :key="getPath"/>
+```
+
 
