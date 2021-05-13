@@ -52,4 +52,18 @@ mounted () {
 <router-view :key="getPath"/>
 ```
 
+- 在computed
+
+```js
+computed: {
+  ...mapState({
+    // 动态主路由
+    mainMenu: state => state.permission.addRouters
+  }),
+  getPath () {
+    return this.$route.fullPath
+  }
+},
+```
+
 
