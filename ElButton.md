@@ -10,3 +10,4 @@
 - icon 图标类名	
 - autofocus 是否默认聚焦	
 - native-type	原生 type 属性	
+
