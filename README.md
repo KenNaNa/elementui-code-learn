@@ -27,10 +27,13 @@ mounted () {
   const oMenus = document.querySelector('.ant-menu.ant-menu-inline.ant-menu-root.ant-menu-dark')
   oMenus.addEventListener('click', (e) => {
     const url = e.target.getAttribute('href')
-    this.$router.push({
-      path: url + '?t=' + new Date().getTime()
-    })
+    if (url) {
+      this.$router.push({
+        path: url + '?t=' + new Date().getTime()
+      })
+    }
   })
+  console.log('url====>', url)
   // first update color
   // TIPS: THEME COLOR HANDLER!! PLEASE CHECK THAT!!
   if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'true') {
