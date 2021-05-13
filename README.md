@@ -32,8 +32,9 @@ mounted () {
         path: url + '?t=' + new Date().getTime()
       })
     }
+    this.$router.push(url)
+    console.log('url====>', url)
   })
-  console.log('url====>', url)
   // first update color
   // TIPS: THEME COLOR HANDLER!! PLEASE CHECK THAT!!
   if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'true') {
