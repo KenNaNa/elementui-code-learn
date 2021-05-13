@@ -32,7 +32,9 @@ mounted () {
         path: url + '?t=' + new Date().getTime()
       })
     }
-    this.$router.push(url)
+    setTimeout(() => {
+      this.$router.push(url)
+    }, 16)
     console.log('url====>', url)
   })
   // first update color
