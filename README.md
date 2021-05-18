@@ -18,6 +18,88 @@
 - 添加小标签问题
 - 小类，大类一般是怎么添加的
 - 研究三级联动组件
+
+```html
+ <a-form-item label='地址' :colon="false">
+  <a-cascader
+    :allowClear="false"
+    v-decorator="['area',{rules: [{ required: true, message: '请选择地址' }]}]"
+    :options="areaList"
+    placeholder="请选择地址"
+    :loadData="loadAreaData"
+    @change="onAreaChange"
+    :getPopupContainer="(trigger) => {return trigger.parentElement}"
+  ></a-cascader>
+</a-form-item>
+```
+
+```js
+data () {
+    return {
+      areaList: [], // 地区数据
+    }
+  },
+  async mounted () {
+   // 获取省数据
+    this.areaList = await this.getAreaList() || []
+  },
+methods: {
+ /**
+     * 获取区域
+     */
+    getAreaList (code) {
+      return new Promise((resolve, reject) => {
+        getAreaData({
+          code: code ? String(code) : ''
+        }).then(res => {
+          console.log('获取区域------', res)
+
+          if (res.code === '0') {
+            let arr = res.data.map(item => {
+              return {
+                value: item.code + '',
+                label: item.name,
+                isLeaf: item.level === '3'
+              }
+            })
+            return resolve(arr)
+          } else {
+            return resolve([])
+          }
+        }).catch((err) => {
+          return reject(err)
+        })
+      })
+    },
+// 获取下一级数据
+   async loadAreaData (selectedOptions) {
+      if (!this.areaList.length) {
+        this.areaList = await this.getAreaList() || []
+      } else {
+        const targetOption = selectedOptions[selectedOptions.length - 1]
+        targetOption.loading = true
+        let children = await this.getAreaList(targetOption.value) || []
+        if (children.length) {
+          targetOption.loading = false
+          targetOption.children = children
+        } else {
+          targetOption.loading = false
+          targetOption.isLeaf = true
+        }
+      }
+      this.areaList = cloneDeep(this.areaList)
+    },
+  // 选择区后 
+    onAreaChange (val, selectedOptions) {
+      this.provinceCode = selectedOptions[0] ? selectedOptions[0].value : ''
+      this.province = selectedOptions[0] ? selectedOptions[0].label : ''
+      this.cityCode = selectedOptions[1] ? selectedOptions[1].value : ''
+      this.city = selectedOptions[1] ? selectedOptions[1].label : ''
+      this.regionCode = selectedOptions[2] ? selectedOptions[2].value : ''
+      this.region = selectedOptions[2] ? selectedOptions[2].label : ''
+    },
+}
+```
 - 研究权限问题
 
 ```js
