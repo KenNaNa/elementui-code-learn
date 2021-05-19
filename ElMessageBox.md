@@ -35,7 +35,7 @@
       class="el-message-box__wrapper"
       tabindex="-1"
       v-show="visible"
-      @click.self="handleWrapperClick"
+      @click.self="handleWrapperClick" 
       role="dialog"
       aria-modal="true"
       :aria-label="title || 'dialog'">
@@ -109,3 +109,5 @@
   </transition>
 </template>
 ```
+
+
