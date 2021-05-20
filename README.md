@@ -18,6 +18,24 @@
 - 添加小标签问题
 - 小类，大类一般是怎么添加的
 - 研究三级联动组件
+- 环境配置问题，提取公共的 url
+
+```js
+/*第一层if判断生产环境和开发环境*/
+if (process.env.NODE_ENV === 'production') {
+    /*第二层if，根据.env文件中的VUE_APP_FLAG判断是生产环境还是测试环境*/
+    if (process.env.VUE_APP_FLAG === 'pro') {
+        //production 生产环境
+        axios.defaults.baseURL = 'http://api.xinggeyun.com';//路径
+
+    } else {
+        //test 测试环境
+        axios.defaults.baseURL = 'http://192.168.0.152:8102';//路径
+   }
+} else { //dev 开发环境 
+   axios.defaults.baseURL = 'http://192.168.0.152:8102';//路径
+}
+```
 
 ```html
  <a-form-item label='地址' :colon="false">
