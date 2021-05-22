@@ -28,6 +28,7 @@
 - 提取 store 几个组件到一个 home/store 目录，方便管理
 - 402 非法类别
 - 写着，写着麻烦，要停下来想想有没有更好的方式
+- [基于阿里Ant Design of Vue的上传组件二次封装](https://blog.csdn.net/weixin_43056561/article/details/107834801?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-1-107834801.pc_agg_rank_aggregation&utm_term=ant+design+vue+%E4%B8%8A%E4%BC%A0%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85&spm=1000.2123.3001.4430)
 
 ```js
 /*第一层if判断生产环境和开发环境*/
