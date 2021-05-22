@@ -26,6 +26,8 @@
 - [基于阿里Ant Design of Vue的上传组件二次封装](https://blog.csdn.net/weixin_43056561/article/details/107834801)
 - 301 logout 重定向到登录页面
 - 提取 store 几个组件到一个 home/store 目录，方便管理
+- 402 非法类别
+- 写着，写着麻烦，要停下来想想有没有更好的方式
 
 ```js
 /*第一层if判断生产环境和开发环境*/
