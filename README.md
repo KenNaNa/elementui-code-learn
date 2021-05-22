@@ -23,6 +23,7 @@
 - 图片需要懒加载
 - [vue中的图片加载与显示默认图片](https://www.cnblogs.com/xulei1992/p/6558294.html)
 - [vue项目设置img标签的默认图片](https://blog.csdn.net/xjun0812/article/details/104414838)
+- [基于阿里Ant Design of Vue的上传组件二次封装](https://blog.csdn.net/weixin_43056561/article/details/107834801)
 
 ```js
 /*第一层if判断生产环境和开发环境*/
