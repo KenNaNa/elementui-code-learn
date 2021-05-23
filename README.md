@@ -32,6 +32,9 @@
 - [Cookie、 session、localStorage 和sessionStorage的存储区别](https://blog.csdn.net/V8min/article/details/115794263?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-8-115794263.pc_agg_rank_aggregation&utm_term=%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E4%B9%8B%E5%90%8Ecookie%E6%B6%88%E5%A4%B1&spm=1000.2123.3001.4430)
 - 添加店铺描述
 - 为什么要这么抽取，为什么要这么实现
+- 像产品思维那样转变
+- 领导是结果导向的，员工是过程导向的，我们应该像结果导向过渡，那么要怎么做
+- 为什么要抽丝剥茧，做到这一步的理由是什么，为什么要这么做
 
 ```js
 /*第一层if判断生产环境和开发环境*/
