@@ -40,6 +40,7 @@
 - 提取公共的颜色，字体大小变量
 - 提取 js 中的常量，比如数字
 - 直接定义变量直接可以全局使用
+- [在vue中自动生成文件以及自动引入component，router、vuex按模块划分](https://blog.csdn.net/qq_42268364/article/details/106905870?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-5-106905870.pc_agg_rank_aggregation&utm_term=vue%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%96%87%E4%BB%B6&spm=1000.2123.3001.4430)
 
 ```js
 /*第一层if判断生产环境和开发环境*/
