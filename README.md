@@ -45,6 +45,39 @@
 - [在vue中自动生成文件以及自动引入component，router、vuex按模块划分](https://blog.csdn.net/qq_42268364/article/details/106905870?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-5-106905870.pc_agg_rank_aggregation&utm_term=vue%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%96%87%E4%BB%B6&spm=1000.2123.3001.4430)
 - [瀑布流组件](https://github.com/AwesomeDevin/vue-waterfall2)
 - 将 StoreModal, StoreCard 抽取到 Store 目录
+- 商品模块使用卡片式模块，方便定位
+
+
+```js
+// vue.config.js
+const path = require("path");
+
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
+module.exports = {
+  chainWebpack: config => {
+    config.resolve.alias
+      .set('components', resolve('src/components/index.js'))
+  },
+}
+```
+
+```js
+// index.js
+const componentFiles = require.context('./', true, /index.js$/)
+
+const components = componentFiles.keys().reduce((files, filePath) => {
+  const fileName = filePath.replace(/^\.\/(.*)\/index\.\w+$/, '$1')
+  const value = componentFiles(filePath)
+  files[fileName] = value.default
+  return files
+}, {})
+
+module.exports = components
+```
+
 
 ```js
 // entryTemplate.js
