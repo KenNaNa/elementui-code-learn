@@ -51,7 +51,7 @@
 module.exports = {
   entryTemplate: (compoenntName) => {
     return `
-      import ${compoenntName} from './src/${compoenntName}'
+      import ${compoenntName} from './src'
       export default ${compoenntName}
     `
   }
@@ -101,24 +101,32 @@ process.stdin.on('data', async chunk => {
   const inputName = String(chunk).trim().toString().split(':')[1]
   // 判断放在那个文件夹里面
   let pathName = String(chunk).trim().toString().split(':')[0]
+
+  let componentPath = null
+  let entryFile = null
   switch (pathName) {
     case 'views':
       pathName = 'views'
+      componentPath = resolve(`../src/${pathName}`, inputName)
       break
     case 'comp':
       pathName = 'components'
+      componentPath = resolve(`../src/${pathName}`, inputName, 'src')
+      entryFile = resolve(`../src/${pathName}`, inputName, 'index.js')
       break
     case 'pageComp':
       pathName = 'pageComponents'
+      componentPath = resolve(`../src/${pathName}`, inputName, 'src')
+      entryFile = resolve(`../src/${pathName}`, inputName, 'index.js')
       break
   }
   // Vue页面组件路径
-  const componentPath = resolve(`../src/${pathName}`, inputName, 'src')
+
   // vue文件
   const vueFile = resolve(componentPath, 'index.vue')
 
   // 入口文件
-  const entryFile = resolve(`../src/${pathName}`, inputName, 'index.js')
+
   // 判断组件文件夹是否存在
   const hasComponentExists = fs.existsSync(componentPath)
   if (hasComponentExists) {
@@ -145,7 +153,9 @@ process.stdin.on('data', async chunk => {
     log(`正在生成 vue 文件 ${vueFile}`)
     await generateFile(vueFile, vueTemplate(componentName))
     log(`正在生成 entry 文件 ${entryFile}`)
-    await generateFile(entryFile, entryTemplate(componentName))
+    if (entryFile) {
+      await generateFile(entryFile, entryTemplate(componentName))
+    }
     successLog('生成成功')
   } catch (e) {
     errorLog(e.message)
