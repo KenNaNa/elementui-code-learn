@@ -47,6 +47,13 @@
 - 将 StoreModal, StoreCard 抽取到 Store 目录
 - 商品模块使用卡片式模块，方便定位
 
+```js
+// main.js
+const components = require('./components/index')
+for (let componentName in components) {
+  Vue.component(componentName, components[componentName])
+}
+```
 
 ```js
 // vue.config.js
@@ -67,14 +74,20 @@ module.exports = {
 ```js
 // index.js
 const componentFiles = require.context('./', true, /index.js$/)
-
 const components = componentFiles.keys().reduce((files, filePath) => {
   const fileName = filePath.replace(/^\.\/(.*)\/index\.\w+$/, '$1')
   const value = componentFiles(filePath)
-  files[fileName] = value.default
+  if (value.default) {
+    const componentName = fileName.split('/')[0]
+    files[componentName] = value.default
+  } else {
+    for (let key in value) {
+      console.log("key===>", key, value[key])
+      files[key] = value[key]
+    }
+  }
   return files
 }, {})
-
 module.exports = components
 ```
 
