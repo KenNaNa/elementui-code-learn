@@ -10,7 +10,7 @@
           @click="handleClick(tag, index)"
           @dblclick="handleModify(tag, index)"
         >
-          {{ `${tag.name.slice(0, 20)}...` }}
+          {{ `${tag.name.slice(0, 5)}...` }}
         </a-tag>
       </a-tooltip>
       <a-tag
@@ -137,6 +137,11 @@ export default {
       } else {
         this.$emit('add-tag', inputValue)
       }
+
+      this.type = 'add'
+      this.modifyTag = null
+      flag = false
+      flagIndex = null
     },
   },
 };
