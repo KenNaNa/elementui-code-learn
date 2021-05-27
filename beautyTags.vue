@@ -1,5 +1,6 @@
 <template>
   <div class="beauty-tags__wrapper">
+    <div class="beauty-tags-tips">{{tips}}</div>
     <template v-for="(tag, index) in defaultTags">
       <a-tooltip v-if="tag.name.length > 20" :key="tag.id" :title="tag.name">
         <a-tag
@@ -52,6 +53,10 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    tips: {
+      type: String,
+      default: '双击小类修改'
     }
   },
   data() {
@@ -154,5 +159,10 @@ export default {
   ::v-deep .anticon.anticon-close {
     color: #fff;
   }
+}
+.beauty-tags-tips {
+  color: #fafafa;
+  font-size: 15px;
+  margin-bottom: 10px;
 }
 </style>
