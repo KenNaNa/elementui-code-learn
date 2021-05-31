@@ -46,6 +46,9 @@
 - [瀑布流组件](https://github.com/AwesomeDevin/vue-waterfall2)
 - 将 StoreModal, StoreCard 抽取到 Store 目录
 - 商品模块使用卡片式模块，方便定位
+- 可增加，删除，编辑的树组件
+- 使用级联的方式去搜索对应的产品
+- 商品列表组件
 
 ```js
 // main.js
