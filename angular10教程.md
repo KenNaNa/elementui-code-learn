@@ -81,6 +81,95 @@ export class PeekABooDirective implements OnInit {
 }
 ```
 
+# 依赖注入 @Injectable(), providers
+
+```js
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class LoggerService {
+  logs: string[] = [];
+  prevMsg = '';
+  prevMsgCount = 1;
+
+  log(msg: string)  {
+    if (msg === this.prevMsg) {
+      // Repeat message; update last log entry with count.
+      this.logs[this.logs.length - 1] = msg + ` (${this.prevMsgCount += 1}x)`;
+    } else {
+      // New message; log it.
+      this.prevMsg = msg;
+      this.prevMsgCount = 1;
+      this.logs.push(msg);
+    }
+  }
+
+  clear() { this.logs = []; }
+
+  // schedules a view refresh to ensure display catches up
+  tick() {  this.tick_then(() => { }); }
+  tick_then(fn: () => any) { setTimeout(fn, 0); }
+}
+```
+
+```js
+import { Component } from '@angular/core';
+
+import { LoggerService } from './logger.service';
+
+@Component({
+  selector: 'peek-a-boo-parent',
+  template: `
+  <hr />
+  <div class="parent">
+    <h2>Peek-A-Boo</h2>
+
+    <button (click)="toggleChild()">
+      {{hasChild ? 'Destroy' : 'Create'}} PeekABooComponent
+    </button>
+    <button (click)="updateHero()" [hidden]="!hasChild">Update Hero</button>
+
+    <div class="info">
+      <peek-a-boo *ngIf="hasChild" [name]="heroName"></peek-a-boo>
+
+      <h3>Lifecycle Hook Log</h3>
+      <div *ngFor="let msg of hookLog" class="log">{{msg}}</div>
+    </div>
+  </div>
+  `,
+  providers:  [ LoggerService ]
+})
+export class PeekABooParentComponent {
+
+  hasChild = false;
+  hookLog: string[] = [];
+
+  heroName = 'Windstorm';
+  private logger: LoggerService;
+
+  constructor(logger: LoggerService) {
+    this.logger = logger;
+    this.hookLog = logger.logs;
+  }
+
+  toggleChild() {
+    this.hasChild = !this.hasChild;
+    if (this.hasChild) {
+      this.heroName = 'Windstorm';
+      this.logger.clear(); // clear log on create
+    }
+    this.hookLog = this.logger.logs;
+    this.logger.tick();
+  }
+
+  updateHero() {
+    this.heroName += '!';
+    this.logger.tick();
+  }
+}
+
+```
+
 # typescript
 
 
