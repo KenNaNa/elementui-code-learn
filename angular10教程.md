@@ -15,6 +15,33 @@
 - 7、ngAfterViewChecked - 组件每次检查视图时调用
 - 8、ngOnDestroy - 指令销毁前调用
 
+# 父组件应用子组件的方法
+
+在父组件使用 @childView 
+
+```js
+export class OnChangesParentComponent {
+  hero!: Hero;
+  power = '';
+  title = 'OnChanges';
+  @ViewChild(OnChangesComponent) childView!: OnChangesComponent;
+
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    // new Hero object every time; triggers onChanges
+    this.hero = new Hero('Windstorm');
+    // setting power only triggers onChanges if this value is different
+    this.power = 'sing';
+    if (this.childView) {
+      this.childView.reset();
+    }
+  }
+}
+```
+
 # typescript
 
 
