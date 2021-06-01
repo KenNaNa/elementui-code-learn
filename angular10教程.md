@@ -2,6 +2,8 @@
 
 [angular-movie-app](https://github.com/marekdano/angular-movie-app)
 
+[what-is-a-service-in-angular-js-why-to-use-it](https://dzone.com/articles/what-is-a-service-in-angular-js-why-to-use-it#:~:text=Angular%20Services&text=The%20main%20objective%20of%20a,controller%20to%20another%20custom%20service)
+
 1. 基础内容，像组件注册，事件，等
 2. 如何编写组件
 3. 生命周期
