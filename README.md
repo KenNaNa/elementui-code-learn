@@ -51,6 +51,7 @@
 - 商品列表组件，只需要将处理之后的数据暴露出来就行了
 - 滚动定位，https://www.cnblogs.com/haonanZhang/p/9517636.html
 - [低代码快速搭建完整商品列表页](https://blog.csdn.net/weixin_47095348/article/details/110670641)
+- [que-etc/resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill)
 
 
 - 今天的目标是把查询页面搞出来，规格添加页面
