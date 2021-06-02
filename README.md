@@ -52,6 +52,8 @@
 - 滚动定位，https://www.cnblogs.com/haonanZhang/p/9517636.html
 - [低代码快速搭建完整商品列表页](https://blog.csdn.net/weixin_47095348/article/details/110670641)
 - [que-etc/resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill)
+- [前端虚拟列表的实现原理](https://mp.weixin.qq.com/s/IC5yNkaOfvM9M-s3tj-jsg)
+- 
 
 
 - 今天的目标是把查询页面搞出来，规格添加页面
