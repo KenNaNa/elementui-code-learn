@@ -169,6 +169,92 @@ export class PeekABooParentComponent {
 }
 
 ```
+# 管道运算符
+
+```js
+import { HttpClient } from '@angular/common/http';
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'fetch',
+  pure: false
+})
+export class FetchJsonPipe implements PipeTransform {
+  private cachedData: any = null;
+  private cachedUrl = '';
+
+  constructor(private http: HttpClient) { }
+
+  transform(url: string): any {
+    if (url !== this.cachedUrl) {
+      this.cachedData = null;
+      this.cachedUrl = url;
+      this.http.get(url).subscribe(result => this.cachedData = result);
+    }
+
+    return this.cachedData;
+  }
+}
+```
+
+# 组件导出导入
+
+```js
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+
+import { AppComponent } from './app.component';
+import { SizerComponent } from './sizer/sizer.component';
+import { FormsModule } from '@angular/forms';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    SizerComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+# 双向绑定
+
+```html
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-sizer',
+  templateUrl: './sizer.component.html',
+  styleUrls: ['./sizer.component.css']
+})
+export class SizerComponent {
+
+  @Input()  size!: number | string;
+  @Output() sizeChange = new EventEmitter<number>();
+
+  dec() { this.resize(-1); }
+  inc() { this.resize(+1); }
+
+  resize(delta: number) {
+    this.size = Math.min(40, Math.max(8, +this.size + delta));
+    this.sizeChange.emit(this.size);
+  }
+}
+
+
+<div>
+  <button (click)="dec()" title="smaller">-</button>
+  <button (click)="inc()" title="bigger">+</button>
+  <label [style.font-size.px]="size">FontSize: {{size}}px</label>
+</div>
+```
 
 # typescript
 
