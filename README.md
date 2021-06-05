@@ -53,12 +53,12 @@
 - [低代码快速搭建完整商品列表页](https://blog.csdn.net/weixin_47095348/article/details/110670641)
 - [que-etc/resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill)
 - [前端虚拟列表的实现原理](https://mp.weixin.qq.com/s/IC5yNkaOfvM9M-s3tj-jsg)
-- 
+- [ant-design-vue锚点](https://blog.csdn.net/weixin_47711357/article/details/114914953) 
 
 
 - 今天的目标是把查询页面搞出来，规格添加页面
 - 今天对接规格创建，添加，修改
-- 开始搞商品添加页面
+- 今晚把基本商品添加页，图片上传基本信息，搞完
 
 ```js
 // main.js
