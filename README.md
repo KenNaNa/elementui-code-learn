@@ -59,6 +59,7 @@
 - [商品规格SKU笛卡尔积计算](https://blog.csdn.net/lihefei_coder/article/details/106668953)
 - [Erupt Framework   🚀   通用后台管理框架](https://github.com/erupts/erupt-web)
 - [国内低代码平台从业者交流](https://github.com/taowen/awesome-lowcode)
+- [低代码平台, 可视化编辑器，单手打代码，解放你的双手](https://github.com/LianjiaTech/hetu)
 
 
 - 今天的目标是把查询页面搞出来，规格添加页面
