@@ -57,6 +57,7 @@
 - [多个数组笛卡尔积-js算法](https://blog.csdn.net/suprezheng/article/details/86558050)
 - [js 生成笛卡尔积](https://www.cnblogs.com/majiang/p/5988093.html)
 - [商品规格SKU笛卡尔积计算](https://blog.csdn.net/lihefei_coder/article/details/106668953)
+- [Erupt Framework   🚀   通用后台管理框架](https://github.com/erupts/erupt-web)
 
 
 - 今天的目标是把查询页面搞出来，规格添加页面
