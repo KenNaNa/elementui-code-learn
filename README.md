@@ -69,6 +69,25 @@
 - 今晚处理，单规格，多规格问题
 
 ```js
+function cartesianProductOf(...args) {
+  return args.reduce(
+    (total, current) => {
+      let ret = [];
+      total.forEach(a => {
+        current.forEach(b => {
+          ret.push(a.concat([b]));
+        });
+      });
+      return ret;
+    },
+    [
+      []
+    ]
+  );
+}
+```
+
+```js
 // main.js
 const components = require('./components/index')
 for (let componentName in components) {
