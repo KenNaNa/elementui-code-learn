@@ -69,6 +69,72 @@
 - 今晚处理，单规格，多规格问题
 - 多规格表格上传，删除处理要回现处理规格，单规格(6-8)
 
+
+三种价格设置
+
+```html
+<template>
+  <div class="test">
+    <a-radio-group name="radioGroup" :default-value="1" v-model="selected">
+      <a-radio :value="1"> 零售价 </a-radio>
+      <a-radio :value="2"> 批发价 </a-radio>
+      <a-radio :value="3"> 团购价 </a-radio>
+    </a-radio-group>
+    <a-form-model ref="ruleForm" :model="ruleForm" layout="inline">
+      <div v-show="selected === 1">
+        <a-form-model-item label="销售价" prop="price">
+          <a-input placeholder="请输入销售价" />
+        </a-form-model-item>
+        <a-form-model-item label="吊牌价" prop="priceTag">
+          <a-input placeholder="请输入吊牌价" />
+        </a-form-model-item>
+        <a-form-model-item label="是否设置为默认价格">
+          <input type="radio" name="radio" :value="value" />
+        </a-form-model-item>
+      </div>
+      <div v-show="selected === 2">
+        <a-form-model-item label="销售价" prop="price">
+          <a-input placeholder="请输入销售价" />
+        </a-form-model-item>
+        <a-form-model-item label="吊牌价" prop="priceTag">
+          <a-input placeholder="请输入吊牌价" />
+        </a-form-model-item>
+        <a-form-model-item label="是否设置为默认价格">
+          <input type="radio" name="radio" :value="value" />
+        </a-form-model-item>
+      </div>
+      <div v-show="selected === 3">
+        <a-form-model-item label="销售价" prop="price">
+          <a-input placeholder="请输入销售价" />
+        </a-form-model-item>
+        <a-form-model-item label="吊牌价" prop="priceTag">
+          <a-input placeholder="请输入吊牌价" />
+        </a-form-model-item>
+        <a-form-model-item label="是否设置为默认价格">
+          <input type="radio" name="radio" :value="value" />
+        </a-form-model-item>
+      </div>
+    </a-form-model>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "test",
+  data() {
+    return {
+      ruleForm: {},
+      selected: 1,
+      labelCol: { span: 4 },
+      wrapperCol: { span: 14 },
+      value: true,
+    };
+  },
+};
+</script>
+```
+
+
 ```js
 function cartesianProductOf(...args) {
   return args.reduce(
