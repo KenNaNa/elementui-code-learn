@@ -147,3 +147,158 @@ export class HeaderComponent implements OnInit {
 
 }
 ```
+
+# Angular表单（用一个实例说明）
+
+```html
+<h2>人员登记系统</h2>
+<div class="people_list">
+  <!-- 都用到了双向数据绑定 -->
+  <ul>
+    <li>
+      <!-- value和class在css里的用法一样 -->
+      姓 名：<input type="text"
+             id="username"
+             [(ngModel)]="peopleInfo.username"
+             value="fonm_input" />
+    </li>
+    <li>
+      性 别：<input type="radio"
+             value="1"
+             name="sex"
+             id="sex1"
+             [(ngModel)]="peopleInfo.sex" /><label for="sex1">男</label>
+      <input type="radio"
+             value="2"
+             name="sex"
+             id="sex2"
+             [(ngModel)]="peopleInfo.sex" /><label for="sex1">女</label>
+    </li>
+    <li>
+      城 市：
+      <select name="city"
+              id="city"
+              [(ngModel)]="peopleInfo.city">
+        <option [value]="item"
+                *ngFor="let item of peopleInfo.cityList">{{item}}</option>
+      </select>
+
+    </li>
+    <li>
+      爱 好：
+      <span *ngFor="let item of peopleInfo.hobby;let key=index;">
+        <!-- 绑定动态属性  用到了一个拼接字符串-->
+        <input type="checkbox"
+               [id]="'check'+key"
+               [(ngModel)]="item.checked" /><label [for]="'check'+key">{{item.title}}</label>
+        &nbsp;&nbsp;
+      </span>
+    </li>
+    <li>
+      备注：
+      <textarea name="mark"
+                id="mark"
+                cols="30"
+                rows="10"
+                [(ngModel)]="peopleInfo.mark"></textarea>
+
+    </li>
+  </ul>
+  <button (click)="doSubmit()"
+          class="submit">获取表单的内容</button>
+  <!-- json使用到了管道的知识 -->
+  <pre class="c">{{peopleInfo |json}}</pre>
+
+</div>
+
+h2 {
+  text-align: center;
+  margin: 10px auto;
+}
+
+.people_list {
+  width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #eee;
+}
+
+li {
+  height: 50px;
+  line-height: 50px;
+}
+
+.fonm_input {
+  width: 300px;
+  height: 30px;
+}
+
+.submit {
+  height: 30px;
+  float: right;
+  margin-right: 50px;
+  margin-top: 120px;
+}
+
+.c {
+  margin-top: 120px;
+}
+```
+
+```ts
+import { Component, OnInit } from '@angular/core';
+type ItemType = {
+  title?: string
+  checked?: boolean
+}
+
+interface PeopleType {
+  username?: string;
+  sex?: string;
+  cityList?: Array<string>;
+  city?: string;
+  hobby?: Array<ItemType>;
+  mark?: string;
+}
+
+
+@Component({
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
+})
+export class FormComponent implements OnInit {
+  // 定义一个对象，
+  public peopleInfo: PeopleType = {
+    username: '',
+    sex: '1',
+    cityList: ['北京', '上海', '深圳', '杭州', '潍坊', '青岛', '厦门'],
+    city: '北京',
+    hobby: [
+      {
+        title: '吃饭',
+        checked: false
+      }, {
+        title: '睡觉',
+        checked: false
+      }, {
+        title: '看剧',
+        checked: false
+      }, {
+        title: '敲代码',
+        checked: true
+      }
+    ],
+    mark: ''
+  }
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  // 自定义方法
+  doSubmit() {
+    console.log(this.peopleInfo)
+  }
+}
+```
+
