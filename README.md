@@ -65,7 +65,8 @@
 - [国内低代码平台从业者交流](https://github.com/taowen/awesome-lowcode)
 - [低代码平台, 可视化编辑器，单手打代码，解放你的双手](https://github.com/LianjiaTech/hetu)
 - [登录详解(VUE前端) · 低代码开发平台文档 · 看云](https://www.kancloud.cn/frank258jun/sca_manual/2242081)
-
+- [微前端项目实战](https://github.com/hql7/wl-micro-frontends)
+- [Angular-HMR](https://github.com/GoogleSmileMMa/Angular-HMR)
 
 - 今天的目标是把查询页面搞出来，规格添加页面
 - 今天对接规格创建，添加，修改
