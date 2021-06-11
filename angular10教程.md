@@ -514,6 +514,9 @@ const appRoutes: Routes = [
 export class AppRoutingModule { }
 ```
 
-# typescript
+#   Error occurs in the template of component HeaderComponent.
+src/app/app.module.ts:11:5 - error NG6001: The class 'HeaderComponent' is listed in the declarations of the NgModsted in the declarations of the NgModule 'AppModule', but is not a directiveve it from the NgModule's declaration, a component, or a pipe. Either remove it from the NgModule's declarations, or add an appropriate Angular decorator.
+
+
 
 
