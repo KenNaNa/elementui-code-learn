@@ -4,6 +4,8 @@
 
 [what-is-a-service-in-angular-js-why-to-use-it](https://dzone.com/articles/what-is-a-service-in-angular-js-why-to-use-it#:~:text=Angular%20Services&text=The%20main%20objective%20of%20a,controller%20to%20another%20custom%20service)
 
+[Angular6 学习笔记——路由详解](https://www.cnblogs.com/banluduxing/p/9380697.html)
+
 
 Angular服务
 Angular服务是单例对象，在应用程序的生存期内只实例化一次。它们包含在应用程序的整个生命周期中维护数据的方法，即数据不会刷新，并且一直可用。服务的主要目标是与Angular应用程序的不同组件组织和共享业务逻辑、模型或数据和函数。
