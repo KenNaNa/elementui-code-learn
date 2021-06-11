@@ -93,3 +93,57 @@ public attr='red';
 <p>{{today | date:'yyyy-MM-dd HH:mm:ss' }}</p>
 
 ```
+
+```ts
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent implements OnInit {
+  title: string = "标题"
+  h: string
+  id: string = "这是 id"
+
+
+  msg: string = "这是 msg"
+
+  list: Array<string> = ['小仙女', '小仙女我爱你', '爱你，爱你，爱你哦']
+
+  inputValue: string = "K 爱小仙女"
+
+  score: number = 1
+
+  arr: Array<string> = this.list
+
+  flag: boolean = true
+
+  attr: string = 'red'
+
+
+  today: Date = new Date()
+  constructor() {
+    this.h = "<h2>这是一个 h2 用[innerHTML]来解析</h2>"
+  }
+
+  ngOnInit(): void {
+  }
+
+  getData() { /*自定义方法获取数据*/
+    //获取
+    alert(this.msg);
+  }
+
+  setData() {
+    //设置值
+    this.msg = '这是设置的值';
+  }
+
+  keyupFn(event) {
+    console.log(event)
+  }
+
+}
+```
