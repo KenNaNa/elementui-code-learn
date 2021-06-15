@@ -2,6 +2,8 @@
 
 给你七年时间，你会干什么？我想不出我会干什么耶，我只有确定的一件事情就是我会全国各地跑一遍
 
+[ Based on vue3.0.0, vant3.0.0, vue-router v4.0.0-0, vuex^4.0.0-0, vue-cli3, mockjs, imitating Jingdong Taobao, mobile H5 e-commerce platform! 基于vue3.0.0 ,vant3.0.0,vue-router v4.0.0-0, vuex^4.0.0-0,vue-cli3,mockjs,仿京东淘宝的,移动端H5电商平台!](https://github.com/GitHubGanKai/vue3-jd-h5)
+
 有人开源躺平
 
 [开源躺平](https://github.com/phodal/tangping)
