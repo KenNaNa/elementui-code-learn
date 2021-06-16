@@ -6,6 +6,10 @@
 
 [ionic-5 vue3 starter with pwa and tailwind setup](https://github.com/Elvincth/ionic-5-vue-pwa)
 
+[响应式编程入门指南 - 通俗易懂 RxJS](https://hijiangtao.github.io/2020/01/13/RxJS-Introduction-and-Actions/)
+
+[RxJS系列教程(四) Observable](https://www.jianshu.com/p/721ce6870740)
+
 有人开源躺平
 
 [开源躺平](https://github.com/phodal/tangping)
