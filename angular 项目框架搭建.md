@@ -28,3 +28,7 @@
 7. 路由配置
 
 8. 权限控制
+
+9. bug 总结
+
+[【TS基础】类型“Window & typeof globalThis”上不存在属性“$loading”](https://blog.csdn.net/weixin_43352901/article/details/108320120)
