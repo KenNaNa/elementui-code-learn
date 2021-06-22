@@ -1,1 +1,8 @@
 # Can't bind to 'ngForTrack' since it isn't a known property of 'tr'.
+
+# tiMessage 弹不出来，报错
+
+```js
+// app.module.ts
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+```
