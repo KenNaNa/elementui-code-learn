@@ -104,3 +104,11 @@ import { FormsModule } from '@angular/forms';
     ]
 })
 ```
+
+# 没有初始化对象，检测不出来
+
+```js
+  // 选项配置
+  public sourceNameConfig: Record<string, any> = {};
+  public operateConfig: Record<string, any> = {};
+```
