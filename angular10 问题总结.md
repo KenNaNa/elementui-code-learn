@@ -73,3 +73,19 @@ export class OccdmService {
 ```
 
 # Can't have multiple template bindings on one element. Use only one attribute prefixed with *
+
+```html
+<tr>
+  <th
+    tiOverflow
+    *ngFor="let column of columns; let i = index"
+    *ngIf="column.show === true || column.show === undefined"
+  >
+    <ti-cell-text>{{ columns[i].title }}</ti-cell-text>
+    <ti-head-sort
+      *ngIf="columns[i].sortKey"
+      [sortKey]="columns[i].sortKey"
+    ></ti-head-sort>
+  </th>
+</tr>
+```
