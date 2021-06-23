@@ -71,3 +71,5 @@ export class OccdmService {
     }
 }
 ```
+
+# Can't have multiple template bindings on one element. Use only one attribute prefixed with *
