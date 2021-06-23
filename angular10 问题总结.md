@@ -91,6 +91,9 @@ export class OccdmService {
 ```
 
 # Angular error: “Can't bind to 'ngModel' since it isn't a known property of 'input'”
+1. If 'ti-select' is an Angular component and it has 'ngModel' input, then verify that it is part of this module.
+3. If 'ti-select' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+5. To allow any property add 'NO_ERRORS_SCHEMA' to the '@NgModule.schemas' of this component.
 
 ```js
 import { FormsModule } from '@angular/forms';
