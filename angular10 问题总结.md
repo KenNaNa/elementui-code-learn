@@ -89,3 +89,15 @@ export class OccdmService {
   </th>
 </tr>
 ```
+
+# Angular error: “Can't bind to 'ngModel' since it isn't a known property of 'input'”
+
+```js
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+    imports: [
+         FormsModule      
+    ]
+})
+```
