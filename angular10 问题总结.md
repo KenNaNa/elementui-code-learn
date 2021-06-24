@@ -112,3 +112,7 @@ import { FormsModule } from '@angular/forms';
   public sourceNameConfig: Record<string, any> = {};
   public operateConfig: Record<string, any> = {};
 ```
+
+# https://limeii.github.io/2019/08/rxjs-notification/
+
+# https://angular.io/guide/http
