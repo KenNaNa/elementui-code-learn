@@ -14,6 +14,8 @@
 
 [RXJS教程](https://limeii.github.io/2019/07/rxjs-subject/)
 
+[RxJS——给你如丝一般顺滑的编程体验（篇幅较长，建议收藏）](https://juejin.cn/post/6910943445569765384)
+
 有人开源躺平
 
 [开源躺平](https://github.com/phodal/tangping)
