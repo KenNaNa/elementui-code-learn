@@ -94,3 +94,182 @@ const baz2 = {
     bar: 1
 } as any;
 ```
+    
+@typescript-eslint/consistent-type-definitions#
+优先使用 interface 而不是 type
+
+interface 可以 implement, extend 和 merge
+
+配置：["error", "interface"]
+【plugin-lint是否支持】：【是】
+    
+```ts
+interface Foo2 {
+    foo: string;
+} 
+```
+
+@typescript-eslint/explicit-function-return-type#
+函数返回值必须与声明的类型一致
+
+编译阶段检查就足够了
+
+【plugin-lint是否支持】：【是】
+
+```ts
+    
+```
+@typescript-eslint/explicit-member-accessibility#
+必须设置类的成员的可访问性
+
+将不需要公开的成员设为私有的，可以增强代码的可理解性，对文档输出也很友好
+
+【plugin-lint是否支持】：【是】
+  
+    
+```ts
+class Foo2 {
+    private static foo = 'foo';
+    public static getFoo() {
+        return Foo2.foo;
+    }
+    public constructor() {}
+    protected bar = 'bar';
+    public getBar() {}
+    public get baz() {
+        return 'baz';
+    }
+    public set baz(value) {
+        console.log(value);
+    }
+} 
+```
+@typescript-eslint/generic-type-naming#
+约束泛型的命名规则
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/interface-name-prefix#
+接口名称必须以 I 开头
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/member-naming#
+私有成员必须以 _ 开头
+
+已有 private 修饰符了，没必要限制变量名
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/member-ordering#
+指定类成员的排序规则
+
+优先级：<br/>1. static > instance<br/>2. field > constructor > method<br/>3. public > protected > private
+
+配置：
+["error", {
+    "default": [
+        "public-static-field",
+        "protected-static-field",
+        "private-static-field",
+        "static-field",
+        "public-static-method",
+        "protected-static-method",
+        "private-static-method",
+        "static-method",
+        "public-instance-field",
+        "protected-instance-field",
+        "private-instance-field",
+        "public-field",
+        "protected-field",
+        "private-field",
+        "instance-field",
+        "field",
+        "constructor",
+        "public-instance-method",
+        "protected-instance-method",
+        "private-instance-method",
+        "public-method",
+        "protected-method",
+        "private-method",
+        "instance-method",
+        "method"
+    ]
+}]
+【plugin-lint是否支持】：【是】
+```ts
+class Foo2 {
+    public static foo1 = 'foo1';
+    protected static foo2 = 'foo2';
+    private static foo3 = 'foo3';
+    public static getFoo1() {}
+    protected static getFoo2() {}
+    private static getFoo3() {
+        return Foo2.foo3;
+    }
+    public bar1 = 'bar1';
+    protected bar2 = 'bar2';
+    private bar3 = 'bar3';
+    public constructor() {
+        console.log(Foo2.getFoo3());
+        console.log(this.getBar3());
+    }
+    public getBar1() {}
+    protected getBar2() {}
+    private getBar3() {
+        return this.bar3;
+    }
+} 
+```
+@typescript-eslint/no-array-constructor#
+禁止使用 Array 构造函数
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/no-dynamic-delete#
+禁止 delete 时传入的 key 是动态的
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/no-empty-function#
+不允许有空函数
+
+有时需要将一个空函数设置为某个项的默认值
+
+【plugin-lint是否支持】：【是】
+ 
+@typescript-eslint/no-empty-interface#
+禁止定义空的接口
+
+【plugin-lint是否支持】：【是】
+```ts
+interface Foo2 {
+    foo: string;
+} 
+```
+@typescript-eslint/no-explicit-any#
+禁止使用 any
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/no-extra-non-null-assertion#
+禁止多余的 non-null 断言
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/no-extraneous-class#
+禁止定义没必要的类，比如只有静态方法的类
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/no-floating-promises#
+禁止调用 Promise 时没有处理异常情况
+
+【plugin-lint是否支持】：【是】
+
+@typescript-eslint/no-for-in-array#
+禁止对 array 使用 for in 循环
+
+统一关闭 requires type information 的规则
+
+【plugin-lint是否支持】：【是】
