@@ -16,6 +16,8 @@
 
 [RxJS——给你如丝一般顺滑的编程体验（篇幅较长，建议收藏）](https://juejin.cn/post/6910943445569765384)
 
+[动画学习 rxjs](https://reactive.how/)
+
 有人开源躺平
 
 [开源躺平](https://github.com/phodal/tangping)
