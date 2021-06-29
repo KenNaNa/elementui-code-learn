@@ -116,3 +116,9 @@ import { FormsModule } from '@angular/forms';
 # https://limeii.github.io/2019/08/rxjs-notification/
 
 # https://angular.io/guide/http
+
+# 时间过滤
+
+```ts
+<td tiOverflow>{{row.deploy_time | date:appService.curDateFormat()}}</td>
+```
