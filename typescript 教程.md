@@ -61,7 +61,40 @@ let obj: { x: number; y: number } = { x: 10, y: 100 };
 let person: { name: string; age: number; sex?: boolean } = { name, age };
 ```
 
+### type 类型
 
+```ts
+// 对象类型
+let obj: { x: number; y: number } = { x: 10, y: 100 };
 
+// 可选属性
+let person: { name: string; age: number; sex?: boolean } = { name, age };
+
+// 类型别名
+type Point = {
+  x: number;
+  y: number;
+};
+function printCoord(pt: Point): void {
+  console.log(pt);
+}
+printCoord(obj);
+```
+
+### interface
+
+```ts
+// 接口
+interface Pt {
+  x: number;
+  y: number;
+}
+
+function printCoord1(pt: Pt): void {
+  console.log(pt)
+}
+
+printCoord1(obj)
+```
 
 
