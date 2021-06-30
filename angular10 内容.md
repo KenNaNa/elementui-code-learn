@@ -54,4 +54,15 @@ export class ChildComponent implements OnChanges{
     }
 }
 ```
+## forwardRef，ElementRef
+
+- [Angular2进阶(一)——如何避免Dom误区](https://blog.csdn.net/changyinling520/article/details/78014052)
+- [Angular 正确使用 @ViewChild、@ViewChildren 访问 DOM、组件、指令](https://blog.csdn.net/wuyuxing24/article/details/84927282)
+
+
+
+
+
+
+
 
