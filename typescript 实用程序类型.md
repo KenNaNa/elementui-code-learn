@@ -81,3 +81,29 @@ const todo: TodoPreview = {
   desc: 'ddddd',
 };
 ```
+## Omit<Type, Keys>
+  
+通过从中选取所有属性Type然后删除Keys（字符串文字或字符串文字的并集）来构造类型。
+  
+```ts
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+  createdAt: number;
+}
+
+type TodoPreview = Omit<Todo, 'description'>;
+const todo: TodoPreview = {
+  title: 'Clean room',
+  completed: false,
+  createdAt: 1615544252770,
+};
+```
+## ReturnType<Type>
+  
+构造一个由 function 的返回类型组成的类型Type。
+
+```ts
+
+```
