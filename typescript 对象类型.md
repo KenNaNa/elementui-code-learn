@@ -112,3 +112,16 @@ interface Circle {
 type ColorfulCircle = Colorful & Circle;
 
 ```
+
+## 只读数组类型
+
+```ts
+const roArray: ReadonlyArray<string> = ["red", "green", "blue"];
+```
+
+
+
+
+
+
+
