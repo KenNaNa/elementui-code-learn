@@ -22,7 +22,7 @@ type Person {
 }
 ```
 
-可选属性
+## 可选属性
 
 ```ts
 // 可选属性
@@ -47,7 +47,7 @@ interface Person {
 }
 ```
 
-索引签名
+## 索引签名
 
 ```ts
 // 索引签名
@@ -58,7 +58,7 @@ const myArray: StringArray = ['1', '2', '4'];
 const secondItem = myArray[1];
 ```
 
-扩展类型
+## 扩展类型
 
 拥有可能是其他类型的更具体版本的类型是很常见的。例如，我们可能有一个BasicAddress类型来描述在美国发送信件和包裹所需的字段
 
@@ -98,4 +98,17 @@ interface BasicAddress {
 interface AddressWithUnit extends BasicAddress {
   unit: string;
 }
+```
+## 交叉路口类型
+```ts
+// 交叉路口类型
+interface Colorful {
+  color: string;
+}
+interface Circle {
+  radius: number;
+}
+
+type ColorfulCircle = Colorful & Circle;
+
 ```
