@@ -22,6 +22,8 @@
 
 [开源躺平](https://github.com/phodal/tangping)
 
+[Angular 笔记](https://github.com/deepthan/blog-angular)
+
 1. 登录跳转问题，不需要 vuex 存储状态了，因为刷新 vuex 数据丧失了，需要使用缓存机制
 2. tabbar 页面与非tabbar页跳转互动问题
 3. 订单页面，需要提示用户去登录的，
