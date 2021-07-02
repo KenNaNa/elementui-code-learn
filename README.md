@@ -24,6 +24,8 @@
 
 [Angular 笔记](https://github.com/deepthan/blog-angular)
 
+[Angular In Depth](https://github.com/AngularID-CN/AngularID-CN)
+
 1. 登录跳转问题，不需要 vuex 存储状态了，因为刷新 vuex 数据丧失了，需要使用缓存机制
 2. tabbar 页面与非tabbar页跳转互动问题
 3. 订单页面，需要提示用户去登录的，
