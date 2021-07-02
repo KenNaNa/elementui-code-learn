@@ -381,7 +381,26 @@ console.log(second); // outputs 2
 console.log(fourth); // outputs 4
 ```
 
-
+### 元组解构
+元组可以像数组一样被解构；解构变量获取相应元组元素的类型：
+```
+let tuple: [number, string, boolean] = [7, "hello", true];
+let [a, b, c] = tuple; // a: number, b: string, c: boolean
+```
+对超出其元素范围的元组进行解构是错误的：
+```
+let [a, b, c, d] = tuple; // Error, no element at index 3
+```
+与数组一样，您可以使用..., 对元组的其余部分进行解构，以获得更短的元组：
+```
+let [a, ...bc] = tuple; // bc: [string, boolean]
+let [a, b, c, ...d] = tuple; // d: [], the empty tuple
+```
+或忽略尾随元素或其他元素：
+```ts
+let [a] = tuple; // a: number
+let [, b] = tuple; // b: string
+```
 
 
 
