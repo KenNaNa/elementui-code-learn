@@ -162,6 +162,225 @@ function f(input: boolean) {
 }
 ```
 
+在这里，我们有两个局部变量a和b。 a的范围仅限于fwhile的主体，其b范围仅限于包含if语句的块。
+
+catch子句中声明的变量也有类似的作用域规则。
+
+```ts
+try {
+  throw "oh no!";
+} catch (e) {
+  console.log("Oh well.");
+}
+// Error: 'e' doesn't exist here
+console.log(e);
+```
+块作用域变量的另一个属性是它们在实际声明之前不能被读取或写入。虽然这些变量在其整个范围内“存在”，但直到它们声明为止的所有点都是它们的时间死区的一部分。这只是一种复杂的说法，你不能在let语句之前访问它们，幸运的是 TypeScript 会让你知道这一点。
+
+```ts
+a++; // illegal to use 'a' before it's declared;
+let a;
+```
+需要注意的是，您仍然可以在声明之前捕获块范围的变量。唯一的问题是在声明之前调用该函数是非法的。如果针对 ES2015，现代运行时会抛出错误；但是，现在 TypeScript 是宽容的，不会将此报告为错误。
+
+```ts
+function foo() {
+  // okay to capture 'a'
+  return a;
+}
+// illegal call 'foo' before 'a' is declared
+// runtimes should throw an error here
+foo();
+let a;
+```
+有关时间死区的更多信息，请参阅Mozilla 开发者网络上的相关内容。
+
+### 重新声明和阴影
+对于var声明，我们提到过声明变量的次数并不重要；你刚拿到一个。
+
+```ts
+function f(x) {
+  var x;
+  var x;
+  if (true) {
+    var x;
+  }
+}
+```
+
+在上面的例子中，所有的声明x实际上都指向同一个 x，这是完全有效的。这通常最终成为错误的来源。值得庆幸的是，let声明并没有那么宽容。
+
+```ts
+let x = 10;
+let x = 20; // error: can't re-declare 'x' in the same scope
+```
+
+对于 TypeScript 来说，变量不一定都需要是块作用域才能告诉我们存在问题。
+
+```ts
+function f(x) {
+  let x = 100; // error: interferes with parameter declaration
+}
+function g() {
+  let x = 100;
+  var x = 100; // error: can't have both declarations of 'x'
+}
+```
+
+这并不是说永远不能用函数作用域变量声明块作用域变量。块范围变量只需要在明显不同的块中声明。
+
+```ts
+function f(condition, x) {
+  if (condition) {
+    let x = 100;
+    return x;
+  }
+  return x;
+}
+f(false, 0); // returns '0'
+f(true, 0); // returns '100'
+```
+
+在更多嵌套的作用域中引入新名称的行为称为shadowing。它有点像一把双刃剑，因为它可以在意外阴影的情况下自行引入某些错误，同时还可以防止某些错误。例如，假设我们已经sumMatrix使用let变量编写了我们之前的函数。
+
+```ts
+function sumMatrix(matrix: number[][]) {
+  let sum = 0;
+  for (let i = 0; i < matrix.length; i++) {
+    var currentRow = matrix[i];
+    for (let i = 0; i < currentRow.length; i++) {
+      sum += currentRow[i];
+    }
+  }
+  return sum;
+}
+```
+这个版本的循环实际上会正确地执行求和，因为内循环的i阴影i来自外循环。
+
+为了编写更清晰的代码，通常应该避免阴影。虽然在某些情况下可能适合利用它，但您应该使用最佳判断。
+
+### 块范围变量捕获
+当我们第一次接触到通过var声明捕获变量的想法时，我们简要地介绍了变量在被捕获后的行为。为了更好地理解这一点，每次运行范围时，它都会创建一个变量“环境”。即使在其范围内的所有内容都已完成执行之后，该环境及其捕获的变量仍然可以存在。
+
+```ts
+function theCityThatAlwaysSleeps() {
+  let getCity;
+  if (true) {
+    let city = "Seattle";
+    getCity = function () {
+      return city;
+    };
+  }
+  return getCity();
+}
+```
+
+因为我们是city从它的环境中捕获的，所以尽管if块已完成执行，我们仍然可以访问它。
+
+回想一下我们之前的setTimeout示例，我们最终需要使用 IIFE 来捕获for循环每次迭代的变量状态。实际上，我们所做的是为我们捕获的变量创建一个新的变量环境。这有点痛苦，但幸运的是，您再也不必在 TypeScript 中这样做了。
+
+let当声明为循环的一部分时，声明具有截然不同的行为。这些声明不仅仅是为循环本身引入一个新环境，而是在每次迭代中创建一个新的作用域。由于这就是我们在 IIFE 中所做的事情，我们可以将旧setTimeout示例更改为仅使用let声明。
+
+```ts
+for (let i = 0; i < 10; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 100 * i);
+}
+```
+
+正如预期的那样，这将打印出来
+
+```ts
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+### const 声明
+const 声明是另一种声明变量的方式。
+
+```ts
+const numLivesForCat = 9;
+```
+它们就像let声明，但正如它们的名字所暗示的那样，一旦它们被绑定，它们的值就不能改变。换句话说，它们具有与 相同的范围规则let，但您不能重新分配给它们。
+
+这不应与它们所引用的值不可变的想法混淆。
+
+```ts
+const numLivesForCat = 9;
+const kitty = {
+  name: "Aurora",
+  numLives: numLivesForCat,
+};
+// Error
+kitty = {
+  name: "Danielle",
+  numLives: numLivesForCat,
+};
+// all "okay"
+kitty.name = "Rory";
+kitty.name = "Kitty";
+kitty.name = "Cat";
+kitty.numLives--;
+```
+
+### 解构
+TypeScript 的另一个 ECMAScript 2015 特性是解构。有关完整参考，请参阅Mozilla 开发人员网络上的文章。在本节中，我们将简要概述。
+
+数组解构
+最简单的解构形式是数组解构赋值：
+
+```ts
+let input = [1, 2];
+let [first, second] = input;
+console.log(first); // outputs 1
+console.log(second); // outputs 2
+```
+
+
+这将创建两个名为first和 的新变量second。这相当于使用索引，但更方便：
+```ts
+first = input[0];
+second = input[1];
+```
+解构也适用于已经声明的变量：
+```ts
+// swap variables
+[first, second] = [second, first];
+```
+并带有函数的参数：
+```
+function f([first, second]: [number, number]) {
+  console.log(first);
+  console.log(second);
+}
+f([1, 2]);
+```
+您可以使用以下语法为列表中的其余项目创建一个变量...：
+```ts
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+```
+当然，由于这是 JavaScript，您可以忽略您不关心的尾随元素：
+```
+let [first] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+```
+或其他元素：
+```ts
+let [, second, , fourth] = [1, 2, 3, 4];
+console.log(second); // outputs 2
+console.log(fourth); // outputs 4
+```
+
 
 
 
