@@ -70,12 +70,51 @@ f(true); // returns '10'
 f(false); // returns 'undefined'
 ```
 
+一些读者可能会对这个例子有双重看法。该变量x是在if块内声明的，但我们能够从该块外部访问它。这是因为var声明可以在其包含的函数、模块、命名空间或全局范围内的任何地方访问 - 我们稍后将讨论所有这些 - 无论包含块如何。有些人称之为var-scoping或function-scoping。参数也是函数范围的。
+
+这些范围规则可能会导致多种类型的错误。它们加剧的一个问题是，多次声明同一个变量并不是错误：
+
+```ts
+function sumMatrix(matrix: number[][]) {
+  var sum = 0;
+  for (var i = 0; i < matrix.length; i++) {
+    var currentRow = matrix[i];
+    for (var i = 0; i < currentRow.length; i++) {
+      sum += currentRow[i];
+    }
+  }
+  return sum;
+}
+```
 
 
+也许对于一些有经验的 JavaScript 开发人员来说很容易发现，但是内部for循环会意外地覆盖该变量，i因为它i引用了相同的函数作用域变量。正如经验丰富的开发人员现在所知道的那样，类似的错误会在代码审查中溜走，并且可能是无尽的挫败感。
 
+### 变量捕获怪癖
+花点时间猜测以下代码段的输出是什么：
 
+```ts
+for (var i = 0; i < 10; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 100 * i);
+}
+```
 
+对于那些不熟悉的人，setTimeout会在一定的毫秒数后尝试执行一个函数（尽管等待其他任何东西停止运行）。
 
+准备好？看一看：
 
-
+```ts
+10
+10
+10
+10
+10
+10
+10
+10
+10
+10
+```
 
