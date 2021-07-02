@@ -145,7 +145,22 @@ for (var i = 0; i < 10; i++) {
 let hello = "Hello!";
 ```
 
+### 块作用域
 
+当一个变量被声明为 using 时let，它使用一些所谓的词法作用域或块作用域。与声明的变量var的范围泄漏到其包含函数不同，块范围的变量在其最近的包含块或for-loop之外不可见。
+
+```ts
+function f(input: boolean) {
+  let a = 100;
+  if (input) {
+    // Still okay to reference 'a'
+    let b = a + 1;
+    return b;
+  }
+  // Error: 'b' doesn't exist here
+  return b;
+}
+```
 
 
 
