@@ -118,3 +118,37 @@ for (var i = 0; i < 10; i++) {
 10
 ```
 
+还记得我们之前提到的关于变量捕获的内容吗？我们传递给的每个函数表达式setTimeout实际上都引用了i来自同一作用域的相同函数表达式。
+
+让我们花点时间考虑一下这意味着什么。 setTimeout将在几毫秒后运行一个函数，但只有在for循环停止执行之后；由当时的for循环已经停止执行，价值i就是10。所以每次给定的函数被调用时，它都会打印出来10！
+
+一个常见的解决方法是使用 IIFE - 一个立即调用的函数表达式 -i在每次迭代时捕获：
+
+```ts
+for (var i = 0; i < 10; i++) {
+  // capture the current state of 'i'
+  // by invoking a function with its current value
+  (function (i) {
+    setTimeout(function () {
+      console.log(i);
+    }, 100 * i);
+  })(i);
+}
+```
+这种看起来很奇怪的模式实际上很常见。该i参数列表实际的阴影i中宣告for循环，但由于我们将它们命名为相同的，我们没有太多修改循环体。
+
+### let 声明
+
+到目前为止，您已经发现var存在一些问题，这正是let引入语句的原因。除了使用的关键字外，let语句的编写方式与var语句相同。
+
+```ts
+let hello = "Hello!";
+```
+
+
+
+
+
+
+
+
