@@ -402,6 +402,112 @@ let [a] = tuple; // a: number
 let [, b] = tuple; // b: string
 ```
 
+### 对象解构
+您还可以解构对象：
+```ts
+let o = {
+  a: "foo",
+  b: 12,
+  c: "bar",
+};
+let { a, b } = o;
+```
+这将创建新变量a和bfromo.a和o.b。请注意，c如果您不需要它，您可以跳过它。
+
+与数组解构一样，您可以在没有声明的情况下进行赋值：
+```ts
+({ a, b } = { a: "baz", b: 101 });
+```
+请注意，我们必须用括号将这个语句括起来。JavaScript 通常将 a 解析{为块的开始。
+
+您可以使用以下语法为对象中的其余项目创建变量...：
+```ts
+let { a, ...passthrough } = o;
+let total = passthrough.b + passthrough.c.length;
+```
+属性重命名
+您还可以为属性指定不同的名称：
+```ts
+let { a: newName1, b: newName2 } = o;
+```
+这里的语法开始变得混乱。你可以读a: newName1作“a作为newName1”。方向是从左到右，就像你写的一样：
+```ts
+let newName1 = o.a;
+let newName2 = o.b;
+```
+令人困惑的是，这里的冒号也没有注明型号。类型，如果指定了，在整个解构之后还需要写：
+```ts
+let { a, b }: { a: string; b: number } = o;
+```
+### 默认值
+默认值允许您在未定义属性的情况下指定默认值：
+
+function keepWholeObject(wholeObject: { a: string; b?: number }) {
+  let { a, b = 1001 } = wholeObject;
+}
+在此示例中，b?指示b是可选的，因此它可能是undefined。 keepWholeObject现在有一个变量 forwholeObject以及属性aand b，即使b未定义。
+
+### 函数声明
+解构也适用于函数声明。对于简单的情况，这很简单：
+```ts
+type C = { a: string; b?: number };
+function f({ a, b }: C): void {
+  // ...
+}
+```
+但是为参数指定默认值更常见，并且通过解构获得正确的默认值可能很棘手。首先，您需要记住将模式放在默认值之前。
+```ts
+function f({ a = "", b = 0 } = {}): void {
+  // ...
+}
+f();
+```
+上面的代码片段是类型推断的一个例子，手册前面已经解释过。
+
+然后，您需要记住在解构属性而不是主初始化程序上为可选属性提供默认值。请记住，它C是用b可选定义的：
+```ts
+function f({ a, b = 0 } = { a: "" }): void {
+  // ...
+}
+f({ a: "yes" }); // ok, default b = 0
+f(); // ok, default to { a: "" }, which then defaults b = 0
+f({}); // error, 'a' is required if you supply an argument
+```
+小心使用解构。正如前面的例子所展示的，除了最简单的解构表达式之外，任何东西都是令人困惑的。这是深层嵌套的解构，它得到更是如此真的很难理解，即使没有打桩重命名，默认值和类型标注。尽量保持解构表达式小而简单。你总是可以自己编写解构会生成的作业。
+
+### 传播
+展开运算符与解构相反。它允许您将一个数组扩展到另一个数组中，或者将一个对象扩展到另一个对象中。例如：
+```ts
+let first = [1, 2];
+let second = [3, 4];
+let bothPlus = [0, ...first, ...second, 5];
+```
+这给 bothPlus 值[0, 1, 2, 3, 4, 5]。传播创造了一个浅拷贝first和second。它们不会因价差而改变。
+
+您还可以传播对象：
+```ts
+let defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
+let search = { ...defaults, food: "rich" };
+```
+现在search是{ food: "rich", price: "$$", ambiance: "noisy" }。对象传播比数组传播更复杂。和数组展开一样，它是从左到右进行的，但结果仍然是一个对象。这意味着在扩展对象中较晚出现的属性会覆盖较早出现的属性。因此，如果我们将前面的示例修改为最后传播：
+```ts
+let defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
+let search = { food: "rich", ...defaults };
+```
+然后overwrites 中的food属性，在这种情况下这不是我们想要的。defaultsfood: "rich"
+
+对象传播还有一些其他令人惊讶的限制。首先，它只包含对象 自己的可枚举属性。基本上，这意味着在传播对象实例时会丢失方法：
+```ts
+class C {
+  p = 12;
+  m() {}
+}
+let c = new C();
+let clone = { ...c };
+clone.p; // ok
+clone.m(); // error!
+```
+其次，TypeScript 编译器不允许从泛型函数传播类型参数。该功能预计会出现在该语言的未来版本中。
 
 
 
