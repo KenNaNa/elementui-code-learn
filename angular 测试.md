@@ -1,3 +1,8 @@
+- [angular-note-12-karma-config](https://godbasin.github.io/2016/07/31/angular-note-12-karma-config/)
+- [configuration-file](https://karma-runner.github.io/1.0/config/configuration-file.html)
+- [jasmine](https://jasmine.github.io/)
+- [基于 Jasmine 和 Karma 的单元测试基础教程](https://hijiangtao.github.io/2020/07/06/Basic-Unit-Test-Tutorial/)
+
 # Angular 单元测试
 
 测试程序有两种主要方法：*端到端测试* 和 *单元测试*。
