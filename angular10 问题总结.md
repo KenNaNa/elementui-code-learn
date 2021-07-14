@@ -268,8 +268,13 @@ export class TestComponent implements OnInit {
 ```
 
 6. 总结
+
 自定义的组件在自己的模块注册  子模块.module.ts、app.module.ts 中的 declarations 注册
+
 第三方组件需要在自己的 子模块.module.ts 里面 declarations 注册，导入模块 imports
+
 test 组件 -> charts.module declarations   注册
+
 charts-routing.module.ts -> 在 charts.module.ts imports 注册
+
 第三方组件模块 -> 在 charts.module.ts imports 注册
