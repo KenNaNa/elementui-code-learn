@@ -278,3 +278,64 @@ test 组件 -> charts.module declarations   注册
 charts-routing.module.ts -> 在 charts.module.ts imports 注册
 
 第三方组件模块 -> 在 charts.module.ts imports 注册
+
+```ts
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { TestComponent } from "./test/test.component";
+import { ChartsRoutingModule } from "./charts-routing.module";
+import { TiTabModule } from "@cloud/tiny3";
+
+@NgModule({
+  declarations: [TestComponent],
+  imports: [CommonModule, ChartsRoutingModule, TiTabModule],
+})
+export class ChartsModule {}
+```
+
+路由跳转
+
+7. ERROR TypeError: Cannot read property 'nativeElement' of undefined
+
+https://stackoverflow.com/questions/39158922/viewchild-not-working-cannot-read-property-nativeelement-of-undefined
+
+
+8. ng g c 组件路径 创建组件
+
+
+echarts 总结
+
+1. x 轴间隔问题, 内容倾斜
+```ts
+axisLabel: {
+  interval: 0,
+  rotate:40
+},
+```
+
+2. Can't bind to 'ngModel' since it isn't a known property of 'ti-date'
+
+https://stackoverflow.com/questions/43298011/angular-error-cant-bind-to-ngmodel-since-it-isnt-a-known-property-of-inpu
+```ts
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+    imports: [
+         FormsModule      
+    ]
+})
+```
+
+3. angular 如何格式化日期
+
+https://blog.csdn.net/u011763994/article/details/78747587
+
+4. ncaught (in promise): NullInjectorError: R3InjectorError(ChartsModule)[DatePipe -> DatePipe -> DatePipe -> DatePipe]: 
+  NullInjectorError: No provider for DatePipe!
+
+
+5. ERROR Error: InvalidPipeArgument: 'The minimum number of digits after fraction (2) is higher than the maximum (1).' for pipe 'DecimalPipe'
+
+6. echarts 鼠标放上去显示提示框属性详解！
+
+https://blog.csdn.net/zhen_xin_ai_ni/article/details/84103026
