@@ -339,3 +339,110 @@ https://blog.csdn.net/u011763994/article/details/78747587
 6. echarts 鼠标放上去显示提示框属性详解！
 
 https://blog.csdn.net/zhen_xin_ai_ni/article/details/84103026
+
+
+1. angular 如何处理数据小数点保留一位
+
+接收的参数格式为{最少整数位数}.{最少小数位数}-{最多小数位数} 
+
+2. 处理日期公共的方法
+
+```ts
+import { Injectable } from "@angular/core";
+import { DatePipe } from "@angular/common";
+@Injectable({
+  providedIn: "root",
+})
+export class DateService {
+  constructor(private datePipe: DatePipe) {}
+
+  getFullYear(value: Date): string {
+    return `${new Date(value).getFullYear()}`;
+  }
+
+  getYearMonth(value: Date): string {
+    return this.datePipe.transform(value, "yyyy-MM");
+  }
+
+  genBefore12Month(value: Date): Array<string> {
+    let dateArr = [];
+    const date = new Date(value);
+    date.setMonth(date.getMonth() + 1, 1); //获取到当前月份,设置月份
+    for (let i = 0; i < 12; i++) {
+      date.setMonth(date.getMonth() - 1); //每次循环一次 月份值减1
+      let m: string | number = date.getMonth() + 1;
+      m = this.padZero(m);
+      dateArr.push(date.getFullYear() + "-" + m);
+      dateArr = dateArr.sort((a, b) => {
+        return new Date(a).getTime() - new Date(b).getTime();
+      });
+    }
+    return dateArr;
+  }
+
+  genLessNowMonth(value: Date): string {
+    const date = new Date(value);
+    date.setMonth(date.getMonth() - 12, 1);
+    let m: string | number = date.getMonth() + 1;
+    m = this.padZero(m);
+    return date.getFullYear() + "-" + m;
+  }
+
+  genMoreNowMonth(value: Date): string {
+    const date = new Date(value);
+    date.setMonth(date.getMonth() + 1, 1);
+    let m: string | number = date.getMonth() + 1;
+    m = this.padZero(m);
+    return date.getFullYear() + "-" + m;
+  }
+
+  padZero(value): string {
+    return value < 10 ? "0" + value : value;
+  }
+}
+```
+
+1. 如何切换分支
+
+查看分支：git branch -a, git branch
+git pull
+切换分支： git checkout 分支名字
+
+git status 查看状态
+git add 添加修改文件
+git commit 提交本地仓库
+git push 提交到远程仓库
+
+
+提交 mr 提交合并请求
+
+需求单号
+
+RR2021050600855
+
+2. 图片如何自适应宽度
+
+<img src="" width="auto"  height="100%">
+
+https://segmentfault.com/a/1190000018279674
+
+3. 像这种顶部导航栏，左边菜单栏最好不要使用顶部布局，慎重使用 display: flex 布局
+
+4. 两栏布局
+
+可以解决出现滚动条的时候，有一部分空白的地方，html {width: fit-content; min-width: 1920px;}
+
+5. 分析
+
+事件 region 分布
+
+P几/NRI
+P几/CRI
+
+6. angular4数据改变，页面没有渲染解决方法
+
+https://blog.csdn.net/csdn277/article/details/85288774
+
+
+
+
