@@ -443,6 +443,82 @@ P几/CRI
 
 https://blog.csdn.net/csdn277/article/details/85288774
 
+7. 如何自适应屏幕宽度
 
+Overload 1 of 2, '(this: GlobalEventHandlers, ev: UIEvent): any', gave the following error.
+        Argument of type '(e: any) => void' is not assignable to parameter of type 'UIEvent'.
+          Type '(e: any) => void' is missing the following properties from type 'UIEvent': detail, view, which, bubbles, and 21 more.
+      Overload 2 of 2, '(this: Window, ev: UIEvent): any', gave the following error.
+        Argument of type '(e: any) => void' is not assignable to parameter of type 'UIEvent'.
+
+https://blog.csdn.net/m0_37729058/article/details/78673510
+
+8. js 获取屏幕宽度
+
+https://www.jianshu.com/p/1a82275d52c8
+
+9. Type boolean trivially inferred from a boolean literal, remove type annotation.
+
+10. Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean (no-inferrable-types)
+
+https://github.com/typescript-eslint/typescript-eslint/blob/v2.33.0/packages/eslint-plugin/docs/rules/no-inferrable-types.md
+
+11. Disallow aliasing this (no-this-alias)
+
+https://github.com/typescript-eslint/typescript-eslint/blob/v2.33.0/packages/eslint-plugin/docs/rules/no-this-alias.md
+
+12. 解决浏览器 resize 
+
+```ts
+  ngAfterViewInit(): void {
+    this.resize();
+    window.addEventListener("resize", () => this.resize(), false);
+  }
+
+  resize() {
+    (document.documentElement || document.body).style.width =
+      window.innerWidth + "px";
+    (document.documentElement || document.body).style.height =
+      window.innerHeight + "px";
+    (document.documentElement || document.body).style.minWidth =
+      (document.documentElement || document.body).clientWidth + "px";
+  }
+```
+
+js 获取的是 window 的分辨率，并不能获取他实际的物体的宽度
+
+git commit 中文乱码
+
+https://segmentfault.com/q/1010000020503297/a-1020000020510180
+
+git config --global i18n.commitencoding utf-8
+
+1. 更新报表时间，报表名称去掉，权限管理，编辑下拉
+
+2. 合并多个 commit : git rebase
+
+rebase 用法小结
+
+https://www.jianshu.com/p/4a8f4af4e803
+
+https://www.huaweicloud.com/articles/bcae81b31451dc4c287fc123ccc1da94.html
+
+3. angular 表单验证
+
+https://www.jianshu.com/p/6f511c5fefe5
+
+4. ERROR Error: There is no FormControl instance attached to form control element with name: 'urlTimeControl'
+
+创建表单控制器
+
+1. 从 @angular/forms 导入 FormBuilder, FormControl, FormGroup
+
+2. 注入 private formBuilder: FormBuilder
+
+3. public menuConfigForm: FormGroup;
+
+4. new FormControl()
+
+5. formGroup 有 removeControl, addControl, get, reset， 
 
 
