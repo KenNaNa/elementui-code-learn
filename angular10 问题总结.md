@@ -135,7 +135,6 @@ https://stackoverflow.com/questions/37927657/img-unsafe-value-used-in-a-resource
 7. 退出登录
 
 
-8. w3 测试环境 lwx1027489, huawei@123
 
 1. 先研究下多语言模块
 
