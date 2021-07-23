@@ -521,3 +521,127 @@ https://www.jianshu.com/p/6f511c5fefe5
 5. formGroup 有 removeControl, addControl, get, reset， 
 
 
+
+类型“EventTarget”上不存在属性“children”。ts(2339)
+
+```ts
+  setListener() {
+    document.body.addEventListener(
+      "mousewheel",
+      (e) => {
+        const element = (e.currentTarget as HTMLElement)
+          .children[8] as HTMLElement;
+        if (element) {
+          const display = ((e.currentTarget as HTMLElement)
+            .children[8] as HTMLElement).style.display;
+          if (display === "none") {
+            ((e.currentTarget as HTMLElement)
+              .children[8] as HTMLElement).style.display = "block";
+          }
+        }
+      },
+      true
+    );
+  }
+```
+
+git commit -m"RR2021050600855 调试退出登录退出不了"
+
+```ts
+import { Injectable } from "@angular/core";
+
+@Injectable({
+  providedIn: "root",
+})
+export class CookieService {
+  constructor() {}
+
+  // eslint-disable-next-line max-params
+  static setItem(
+    key: string,
+    value: string,
+    ttl?: number,
+    path?: string
+  ): void {
+    let cookieString = `${key}=${encodeURIComponent(value)}`;
+    if (ttl > 0) {
+      const date = new Date();
+      date.setTime(date.getTime() + ttl);
+      cookieString += `; expires=${date.toUTCString()}; path=${path || "/"}`;
+    }
+    document.cookie = cookieString;
+  }
+
+  static getItem(key: string): string {
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0, len = cookies.length; i < len; i += 1) {
+      const arr = cookies[i].split("=");
+      if (arr[0].trim() === key.trim()) {
+        return decodeURIComponent(arr[1]);
+      }
+    }
+
+    return "";
+  }
+
+  static removeItem(key: string, path?: string): void {
+    const date = new Date(
+      new Date().getTime() - 10 * 24 * 3600000
+    ).toUTCString();
+
+    document.cookie = `${key}=; expires=${date}; path=${path || "/"}`;
+  }
+
+  static removeAll(): void {
+    const keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+      for (var i = keys.length; i--; )
+        document.cookie = keys[i] + "=0;expires=" + new Date(0).toUTCString();
+    }
+  }
+}
+
+```
+
+JS 无法清除Cookie的解决方法 #12
+
+https://github.com/xieshanshan/blog/issues/12
+
+1. this.router.navigateByUrl("/management/authority/application"); 不会跳转过去
+
+2. this.router.navigate(["/management/authority/application"])
+
+this.router.navigate 不会自动刷新页面
+
+https://blog.csdn.net/weixin_42080477/article/details/97662849
+
+Angular刷新当前页面的几种方法（转载）
+
+https://blog.csdn.net/xuehu837769474/article/details/104763685/?utm_term=angular%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2%E9%97%AE%E9%A2%98&utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-0-104763685&spm=3001.4430
+
+5. 监听路由变化
+
+Angular8 中 监听url变化
+https://blog.csdn.net/weixin_41844140/article/details/106802253
+
+
+6. 如何 rebase git 冲突
+
+别人和我改动的代码相同，但是别人先合进主分支
+
+git checkout 主分支
+
+git pull 更新主分支最新代码
+
+git checkout 自己的分支
+
+git rebase 主分支
+
+解决冲突，git add 冲突的文件，git rebase --continue 
+
+git commit -m""
+
+git push
+
+
