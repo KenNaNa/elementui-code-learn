@@ -645,3 +645,21 @@ git commit -m""
 git push
 
 
+8. 数据加载不出来，有可能是 DOM 已经加载完成，但是数据还没有过来导致的，所以可以加下  `*ngIf="show"` 来等加载完成之后再展示数据
+```ts
+<ti-treeselect
+  *ngIf="tiTreeSelectRegion.options.length"
+  [multiple]="true"
+  [searchable]="true"
+  [selectAll]="true"
+  id="tiTreeSelectRegion"
+  placeholder="请选择"
+  [options]="tiTreeSelectRegion.options"
+  [(ngModel)]="tiTreeSelectRegion.value"
+  (ngModelChange)="tiTreeSelectRegion.ngModelChange($event)"
+>
+</ti-treeselect>
+```
+
+
+
