@@ -661,5 +661,167 @@ git push
 </ti-treeselect>
 ```
 
+9. ERROR Error: Initialize failed: invalid dom.
+
+10. 疑问点
+1）
+
+
+pa: [], lo: ['dianxin']
+
+如何修改第三方插件样式
+
+1. `:host` 表示修改当前组件
+2. `::ng-deep` 可以忽略中间 className 的嵌套层级关系，直接找到你要修改的 className
+
+NodeInjector: NOT_FOUND [NgControl]
+
+https://stackoverflow.com/questions/48525216/getting-no-provider-for-ngcontrol-error-after-adding-reactiveformsmodule-to-my-a
+https://stackoverflow.com/questions/58833589/ngcontrol-in-directive-no-provider-for-ngcontrol
+
+```ts
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+```
+
+https://blog.csdn.net/lvxinaidou/article/details/108041861
+
+````ts
+<d-tab [id]="tabs.departRank.key" [title]="tabs.departRank.title">
+    <ng-template dTabContent>
+      <div class="nf-chart" id="depart_chart_1" #depart_chart_1></div>
+      <div class="nf-chart" id="depart_chart_2" #depart_chart_2></div>
+      <div class="nf-chart" id="depart_chart_3" #depart_chart_3></div>
+      <div class="nf-chart" id="depart_chart_4" #depart_chart_4></div>
+      <div class="nf-chart" id="depart_chart_5" #depart_chart_5></div>
+      <div class="nf-chart" id="depart_chart_6" #depart_chart_6></div>
+      <div class="nf-chart" id="depart_chart_7" #depart_chart_7></div>
+      <div class="nf-chart" id="depart_chart_8" #depart_chart_8></div>
+      <div class="nf-chart" id="depart_chart_9" #depart_chart_9></div>
+      <div class="nf-chart" id="depart_chart_10" #depart_chart_10></div>
+      <div class="nf-chart" id="depart_chart_1" #depart_chart_1></div>
+      <div class="nf-chart" id="depart_chart_12" #depart_chart_12></div>
+    </ng-template>
+  </d-tab>
+```
+
+Angular学习笔记58：组件的样式设置，样式作用范围，引入样式的方式
+
+https://blog.csdn.net/wjyyhhxit/article/details/100626777
+
+https://angular.cn/guide/component-styles
+
+
+1. 新用户，没有角色的时候，去申请角色的时候，我们应该怎么处理
+
+2. 表单验证问题
+
+git rebase 合并多个 commit
+
+git rebase -i head~数字
+
+git push -f
+
+
+3. 调试
+4. 后面优化
+
+5. echarts x轴文字显示不全(xAxis文字倾斜比较全面的3种做法值得推荐)
+
+https://blog.csdn.net/kebi007/article/details/68488694
+
+1. 疑问，如果他查询出来的数据没有还要展示？
+
+2. pc端使用rem进行适配 （vu-cli3/4+lib-flexible+postcss-pxtorem）
+
+https://blog.csdn.net/weixin_40297452/article/details/107563825
+
+3. echarts pie饼图中间显示总数 pie饼图类型之间设置白缝隙
+
+https://blog.csdn.net/zhengshaofeng1/article/details/106358494
+
+4. ERROR in Tried to overwrite /data/fuxi_ci_workspace/6108ad7cac264d2b7e7ccf23/web/ng8/node_modules/_@avenueui_ng-devui@10.66.0@@avenueui/ng-devui/node_modules/@angular/cdk/platform/platform.d.ts.__ivy_ngcc_bak with an ngcc back up file, which is disallowed.  
+
+https://stackoverflow.com/questions/60130728/tried-to-overwrite-angular-cdk-stepper-step-header-d-ts-ivy-ngcc-bak-with-an
+
+5. Angular 6 StaticInjectorError (Platform: core) No provider for
+
+https://stackoverflow.com/questions/52288263/angular-6-staticinjectorerror-platform-core-no-provider-for
+
+6. 移动端图表插件
+
+https://chartjs.bootcss.com/
+
+7. echarts 移动端如何
+
+8. 后裔菜单 app/availability/availabilityManagement/overview
+
+9. canvas 如何自适应移动端
+
+https://blog.csdn.net/lm1022/article/details/78211075
+
+10. [object Object] is not a PostCSS plugin
+
+https://stackoverflow.com/questions/40090111/postcss-error-object-object-is-not-a-postcss-plugin
+
+11. 移动端适配
+
+```ts
+npm install postcss-pxtorem@5.1.1
+npm install autoprefixer@9.7.3
+
+postcss.config.js
+module.exports = {
+    plugins: [
+        require('autoprefixer'),
+        require('postcss-pxtorem')({
+            rootValue: 37.5, //换算基数， 
+
+            unitPrecision: 3, //允许REM单位增长到的十进制数字,小数点后保留的位数。
+
+            propList: ['*'],
+
+            exclude: /(node_module)/,  //默认false，可以（reg）利用正则表达式排除某些文件夹的方法，例如/(node_module)/ 。如果想把前端UI框架内的px也转换成rem，请把此属性设为默认值
+
+            selectorBlackList: ['.van'], //要忽略并保留为px的选择器，本项目我是用的vant ui框架，所以忽略他
+
+            mediaQuery: false,  //（布尔值）允许在媒体查询中转换px。
+
+            minPixelValue: 1 //设置要替换的最小像素值
+        })
+    ]
+};
+```
+
+11. HomeComponent_Host.ngfactory.js? [sm]:1 ERROR NullInjectorError: StaticInjectorError(AppModule)[DatePipe]: 
+https://stackoverflow.com/questions/58540498/no-provider-for-datepipe
+
+12. 警戒线
+
+https://blog.csdn.net/weixin_44273026/article/details/105087524
+
+13. 如何解决 echarts 图标模糊问题
+
+```html
+1. 不直接使用 canvas 画 echarts，会导致画出来的页面模糊
+
+<canvas id="canvas"></canvas>
+
+2. 直接使用 html 来 画
+
+
+<div
+   id="lineCharts"
+   ref="lineCharts"
+   style="height: 100%;width: 100%;margin: 0;padding: 0;display: block;"
+></div>
+```
+
+14. Angular10 路由传参
+
+https://blog.csdn.net/Damien_J_Scott/article/details/115356450
+
+
+
+
 
 
