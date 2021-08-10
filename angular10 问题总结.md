@@ -801,7 +801,7 @@ https://blog.csdn.net/weixin_44273026/article/details/105087524
 
 13. 如何解决 echarts 图标模糊问题
 
-```html
+
 1. 不直接使用 canvas 画 echarts，会导致画出来的页面模糊
 
 <canvas id="canvas"></canvas>
