@@ -613,3 +613,11 @@ computed: {
   }
 ```
 
+16 css 如何解决 flex 布局高度自动撑开
+
+```css
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+```
+
