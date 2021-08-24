@@ -572,4 +572,44 @@ computed: {
 },
 ```
 
+```ts
+  // 合并行
+  colspanMethod(dataList, key) {
+    const obj = {};
+    let data = [];
+    let temp = [];
+    for (let i = 0; i < dataList.length; i++) {
+      const item = dataList[i];
+      if (!obj[item[key]]) {
+        obj[item[key]] = {
+          num: 1,
+          isFirst: false,
+          data: [item],
+        };
+      } else {
+        obj[item[key]].num++;
+        obj[item[key]].data.push(item);
+      }
+    }
+
+    for (let j = 0; j < dataList.length; j++) {
+      for (let k in obj) {
+        if (k === dataList[j][key]) {
+          if (!obj[k].isFirst) {
+            dataList[j].rowspan = obj[k].num;
+            obj[k].isFirst = true;
+          }
+          break;
+        }
+      }
+    }
+
+    for (let ke in obj) {
+      data = data.concat(obj[ke].data);
+    }
+
+    console.log("obbject", data, dataList, obj);
+    return data;
+  }
+```
 
