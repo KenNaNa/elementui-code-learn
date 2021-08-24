@@ -821,7 +821,48 @@ https://blog.csdn.net/weixin_44273026/article/details/105087524
 https://blog.csdn.net/Damien_J_Scott/article/details/115356450
 
 
+15 根据某一个字段来合并行
 
+```ts
+  // 合并行
+  colspanMethod(dataList, key) {
+    const obj = {};
+    let data = [];
+    let temp = [];
+    for (let i = 0; i < dataList.length; i++) {
+      const item = dataList[i];
+      if (!obj[item[key]]) {
+        obj[item[key]] = {
+          num: 1,
+          isFirst: false,
+          data: [item],
+        };
+      } else {
+        obj[item[key]].num++;
+        obj[item[key]].data.push(item);
+      }
+    }
+
+    for (let j = 0; j < dataList.length; j++) {
+      for (let k in obj) {
+        if (k === dataList[j][key]) {
+          if (!obj[k].isFirst) {
+            dataList[j].rowspan = obj[k].num;
+            obj[k].isFirst = true;
+          }
+          break;
+        }
+      }
+    }
+
+    for (let ke in obj) {
+      data = data.concat(obj[ke].data);
+    }
+
+    console.log("obbject", data, dataList, obj);
+    return data;
+  }
+```
 
 
 
