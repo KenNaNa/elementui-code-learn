@@ -702,7 +702,7 @@ https://blog.csdn.net/lvxinaidou/article/details/108041861
       <div class="nf-chart" id="depart_chart_12" #depart_chart_12></div>
     </ng-template>
   </d-tab>
-```
+
 
 Angular学习笔记58：组件的样式设置，样式作用范围，引入样式的方式
 
