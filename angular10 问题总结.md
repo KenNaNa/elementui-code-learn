@@ -814,7 +814,6 @@ https://blog.csdn.net/weixin_44273026/article/details/105087524
    ref="lineCharts"
    style="height: 100%;width: 100%;margin: 0;padding: 0;display: block;"
 ></div>
-```
 
 14. Angular10 路由传参
 
@@ -864,5 +863,78 @@ https://blog.csdn.net/Damien_J_Scott/article/details/115356450
   }
 ```
 
+19. angular 父组件如何访问子组件的方法 
+
+https://www.cnblogs.com/starof/p/8689908.html
+
+20 angular 子组件如何访问父组件的方法
+
+https://blog.csdn.net/smallNut/article/details/106048445
+
+21 如何获取并缓存上一级路由，js 缓存
+
+```ts
+import { CookieService } from "@src/services/cookie.service";
+export class HandleTiTreeSelectService {
+  static handleSelectAll(treeNodes) {
+    treeNodes.map((item) => {
+      item.checked = true;
+      if (item.children && item.children.length) {
+        item.children.map((item) => {
+          item.checked = true;
+        });
+      }
+    });
+    return treeNodes;
+  }
+
+  static handleSelectValue(treeNodes) {
+    return treeNodes.filter((item) => item.checked);
+  }
+
+  // 将小数点转成百分比
+  static toPercent(value) {
+    if (value === null) {
+      return (value = 0);
+    }
+    if (value <= 1 && value > 0) {
+      var str = Number((value || 0) * 100).toFixed(2);
+      str += "%";
+      return str;
+    } else {
+      return value + "";
+    }
+  }
+
+  // 设置路由 fullPath
+  static setRouteFullPath(routeName) {
+    const url = window.location.hash.slice(1);
+    CookieService.setItem(routeName, url);
+  }
+
+  // 从缓存中获取 fullPath
+  static getRouteFullPath(routeName) {
+    return CookieService.getItem(routeName);
+  }
+
+  // 解析路由参数
+  static parseRouteParams(url) {
+    let index = url.indexOf("?");
+    url = url.substring(index + 1);
+    let vars = url.split("&");
+    let params = {};
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split("=");
+      params[pair[0]] = decodeURIComponent(pair[1]);
+    }
+    console.log("params===>", params);
+    return params;
+  }
+}
+```
+
+22 js unescape string 中文乱码
+
+https://blog.csdn.net/guchuanlong/article/details/8843906
 
 
