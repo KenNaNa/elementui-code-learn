@@ -1,5 +1,7 @@
 # 电商项目的总结
 
+[前端职业生涯规划](https://github.com/f2e-journey/f2e-journey/blob/master/career-planning.md)
+
 [可视化低代码平台](https://github.com/zzcandor/lowcode-dashboard)
 
 给你七年时间，你会干什么？我想不出我会干什么耶，我只有确定的一件事情就是我会全国各地跑一遍
